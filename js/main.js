@@ -79,8 +79,7 @@ function Game_load(width,height){
               for (var o = 1; o < Ui_Button.length; o++) {
                 Ui_Button[o].moveTo(Ui_Button[o].x-width,Ui_Button[o].y-height);
               }
-              S_Input1.x-=width;
-              S_Input1.y-=height;
+              if(S_Input1._element.value) Background._element.src = S_Input1._element.value;
               Ui_Button[0]._text = "メニューを閉じる";
               return;
               break;
@@ -88,8 +87,6 @@ function Game_load(width,height){
               for (var o = 1; o < Ui_Button.length; o++) {
                 Ui_Button[o].moveTo(Ui_Button[o].x+width,Ui_Button[o].y+height);
               }
-              S_Input1.x+=width;
-              S_Input1.y+=height;
               if(S_Input1._element.value) Background._element.src = S_Input1._element.value;
               Ui_Button[0]._text = "メニューを開く";
               return;
@@ -303,7 +300,7 @@ function Game_load(width,height){
        Buttons(width/4*3,height/10*7,"リセット",18);
        Buttons(width/4*3,height/10*8,"コマ送り",19);
        var S_Input1 = new Entity();
-       S_Input1.moveTo(width,height/10*19);
+       S_Input1.moveTo(width/4*3,0);
        S_Input1.width = width/4;
        S_Input1.height = height/10;
        S_Input1._element = document.createElement('input');
