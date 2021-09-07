@@ -36,7 +36,7 @@ function Game_load(width,height){
         if(i==0)Ui_Button[i].moveTo(x,y);
         else{
           Ui_Button[i].moveTo(x+width,y+height);
-          Ui_Button[i].opacity = 0.5;
+          Ui_Button[i].opacity = 0.8;
         }
         Ui_Button[i]._style["font-size"] = height/20;
         scene.addChild(Ui_Button[i]);
