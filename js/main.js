@@ -251,6 +251,9 @@ function Game_load(width,height){
        Buttons(0,height/10*7,"髪",13);
        Buttons(width/4*1,height/10*7,"涙オン",14);
        Buttons(width/4*2,height/10*7,"肌",15);
+       Buttons(0,height/10*8,"左腕",16);
+       Buttons(width/4*1,height/10*8,"右腕",17);
+       Buttons(width/4*3,height/10*7,"リセット",18);
        return scene;
     };
     game.replaceScene(Main_Scene());
