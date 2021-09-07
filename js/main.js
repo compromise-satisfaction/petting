@@ -263,6 +263,13 @@ function Game_load(width,height){
        Background.height = height;
        scene.addChild(Background);
 
+       var Background2 = new Sprite();
+       Background2._element = document.createElement("img");
+       Background2._element.src = "image/hair/0.png";
+       Background2.width = width;
+       Background2.height = height;
+       scene.addChild(Background2);
+
        Images("image/eyes/1.png",1);
        Images("image/highlight/1.png",1);
        Images("image/body/1/1.png",1);
