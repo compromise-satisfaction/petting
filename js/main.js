@@ -82,15 +82,22 @@ function Game_load(width,height){
               return;
               break;
             case "口":
-              Image[5].imageurl++;
-              if(Image[5].imageurl==8) Image[5].imageurl = 1;
-              Image[5]._element.src = "image/mouth/"+Image[5].imageurl+".png";
+              Image[7].imageurl++;
+              if(Image[7].imageurl==8) Image[7].imageurl = 1;
+              Image[7]._element.src = "image/mouth/"+Image[7].imageurl+".png";
               return;
               break;
             case "眉":
-              Image[4].imageurl++;
-              if(Image[4].imageurl==3) Image[4].imageurl = 1;
-              Image[4]._element.src = "image/eyebrows/"+Image[4].imageurl+".png";
+              Image[6].imageurl++;
+              if(Image[6].imageurl==3) Image[6].imageurl = 1;
+              Image[6]._element.src = "image/eyebrows/"+Image[6].imageurl+".png";
+              return;
+              break;
+            case "髪":
+              Image[5].imageurl++;
+              if(Image[5].imageurl==9) Image[5].imageurl = 1;
+              Image[5]._element.src = "image/hair/"+Image[5].imageurl+".png";
+              Image[9]._element.src = "image/bangs/"+Image[5].imageurl+".png";
               return;
               break;
             case "眼":
@@ -116,6 +123,18 @@ function Game_load(width,height){
               Image[1].x -= width;
               Image[1].y -= height;
               Ui_Button[i]._text = "ハイライトオフ";
+              return;
+              break;
+            case "涙オフ":
+              Image[4].x += width;
+              Image[4].y += height;
+              Ui_Button[i]._text = "涙オン";
+              return;
+              break;
+            case "涙オン":
+              Image[4].x -= width;
+              Image[4].y -= height;
+              Ui_Button[i]._text = "涙オフ";
               return;
               break;
             case "時間":
@@ -155,34 +174,32 @@ function Game_load(width,height){
           Image[2]._element.src = "image/body/"+Image[2].imageurl+".png";
           if(time_H){
             Image[1].x += 1;
+            Image[4].x += 1;
           }
           else{
             Image[1].x -= 1;
+            Image[4].x -= 1;
           }
           if(time%5==0){
             if(time_H) time_H = false;
             else time_H = true;
           }
-          if(blink == 3){
-            Image[6].imageurl = 3;
-            Image[6]._element.src = "image/eyelashes/3.png";
-          }
-          else{
-            if(Image[6].imageurl==4){
-              Image[6].imageurl = 1;
-              Image[6]._element.src = "image/eyelashes/1.png";
+          if(blink != 3){
+            if(Image[8].imageurl==4){
+              Image[8].imageurl = 1;
+              Image[8]._element.src = "image/eyelashes/1.png";
             }
-            if(Image[6].imageurl==3){
-              Image[6].imageurl = 4;
-              Image[6]._element.src = "image/eyelashes/2.png";
+            if(Image[8].imageurl==3){
+              Image[8].imageurl = 4;
+              Image[8]._element.src = "image/eyelashes/2.png";
             }
-            if(Image[6].imageurl==2){
-              Image[6].imageurl = 3;
-              Image[6]._element.src = "image/eyelashes/3.png";
+            if(Image[8].imageurl==2){
+              Image[8].imageurl = 3;
+              Image[8]._element.src = "image/eyelashes/3.png";
             }
             if(time%blink==0){
-              Image[6].imageurl = 2;
-              Image[6]._element.src = "image/eyelashes/2.png";
+              Image[8].imageurl = 2;
+              Image[8]._element.src = "image/eyelashes/2.png";
             }
           }
           time++;
@@ -210,9 +227,14 @@ function Game_load(width,height){
        Images("image/highlight/1.png",1);
        Images("image/body/1.png",1);
        Images("image/face/1.png",1);
+       Images("image/face/tears.png",1);
+       Image[4].x += width;
+       Image[4].y += height;
+       Images("image/hair/1.png",1);
        Images("image/eyebrows/1.png",1);
        Images("image/mouth/1.png",1);
        Images("image/eyelashes/1.png",1);
+       Images("image/bangs/1.png",1);
        Buttons(0,0,"メニューを開く",0);
        Buttons(width/2,height/10*8,"↑",1);
        Buttons(width/2,height/10*9,"↓",2);
@@ -226,6 +248,9 @@ function Game_load(width,height){
        Buttons(width/4*1,height/10*5,"まばたき間隔+",10);
        Buttons(width/4*2,height/10*5,"まばたき間隔-",11);
        Buttons(width/4*3,height/10*5,"頬",12);
+       Buttons(0,height/10*7,"髪",13);
+       Buttons(width/4*1,height/10*7,"涙オン",14);
+       Buttons(width/4*2,height/10*7,"肌",15);
        return scene;
     };
     game.replaceScene(Main_Scene());
