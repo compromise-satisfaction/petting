@@ -16,7 +16,6 @@ function Game_load(width,height){
       var blink = 50;
       var blinks = 0;
       var Image = [];
-      var Stone = false;
 
       function Images(a,b){
         Image[i] = new Sprite();
@@ -103,11 +102,9 @@ function Game_load(width,height){
               break;
             case "髪":
               Image[5].imageurl++;
-              if(Image[5].imageurl==11) Image[5].imageurl = 1;
-              if(!Stone){
-                Image[5]._element.src = "image/hair/"+Image[5].imageurl+".png";
-                Image[9]._element.src = "image/bangs/"+Image[5].imageurl+".png";
-              }
+              if(Image[5].imageurl==12) Image[5].imageurl = 1;
+              Image[5]._element.src = "image/hair/"+Image[5].imageurl+".png";
+              Image[9]._element.src = "image/bangs/"+Image[5].imageurl+".png";
               return;
               break;
             case "眼":
@@ -145,19 +142,6 @@ function Game_load(width,height){
               Image[4].x -= width;
               Image[4].y -= height;
               Ui_Button[i]._text = "涙オフ";
-              return;
-              break;
-            case "首石化":
-              Stone = Image[5].imageurl;
-              Image[5]._element.src = "image/hair/stone.png";
-              Image[9]._element.src = "image/bangs/stone.png";
-              Ui_Button[i]._text = "溶かす";
-              return;
-              break;
-            case "溶かす":
-              Image[5]._element.src = "image/hair/"+Stone+".png";
-              Image[9]._element.src = "image/bangs/"+Stone+".png";
-              Ui_Button[i]._text = "首石化";
               return;
               break;
             case "停":
@@ -292,7 +276,6 @@ function Game_load(width,height){
        Buttons(width/4*1,height/10*8,"右腕",17);
        Buttons(width/4*3,height/10*7,"リセット",18);
        Buttons(width/4*3,height/10*8,"コマ送り",19);
-       Buttons(0,height/10*9,"首石化",20);
        Ui_Button[19].moveTo(Ui_Button[19].x+width,Ui_Button[19].y+height);
        return scene;
     };
