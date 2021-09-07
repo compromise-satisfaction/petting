@@ -21,6 +21,7 @@ function Game_load(width,height){
         Image[i] = new Sprite();
         Image[i]._element = document.createElement("img");
         Image[i]._element.src = a;
+        if(i==2) Image[i].body = 1;
         Image[i].imageurl = b;
         Image[i].width = width;
         Image[i].height = height;
@@ -78,6 +79,8 @@ function Game_load(width,height){
               for (var o = 1; o < Ui_Button.length; o++) {
                 Ui_Button[o].moveTo(Ui_Button[o].x-width,Ui_Button[o].y-height);
               }
+              S_Input1.x-=width;
+              S_Input1.y-=height;
               Ui_Button[0]._text = "メニューを閉じる";
               return;
               break;
@@ -85,6 +88,9 @@ function Game_load(width,height){
               for (var o = 1; o < Ui_Button.length; o++) {
                 Ui_Button[o].moveTo(Ui_Button[o].x+width,Ui_Button[o].y+height);
               }
+              S_Input1.x+=width;
+              S_Input1.y+=height;
+              if(S_Input1._element.value) Background._element.src = S_Input1._element.value;
               Ui_Button[0]._text = "メニューを開く";
               return;
               break;
@@ -156,6 +162,12 @@ function Game_load(width,height){
               Ui_Button[i]._text = "停";
               return;
               break;
+            case "肌":
+              Image[2].body++;
+              if(Image[2].body==6) Image[2].body = 1;
+              Image[2]._element.src = "image/body/"+Image[2].body+"/"+Image[2].imageurl+".png";
+              return;
+              break;
             case "コマ送り":
               move = false;
               return;
@@ -188,7 +200,7 @@ function Game_load(width,height){
       function One_Scene(){
         Image[2].imageurl++;
         if(Image[2].imageurl==13) Image[2].imageurl = 1;
-        Image[2]._element.src = "image/body/"+Image[2].imageurl+".png";
+        Image[2]._element.src = "image/body/"+Image[2].body+"/"+Image[2].imageurl+".png";
         if(time_H){
           Image[1].x += 1;
           Image[4].x += 1;
@@ -244,9 +256,16 @@ function Game_load(width,height){
         }
        })
 
+       var Background = new Sprite();
+       Background._element = document.createElement("img");
+       Background._element.src = "image/hair/10.png";
+       Background.width = width;
+       Background.height = height;
+       scene.addChild(Background);
+
        Images("image/eyes/1.png",1);
        Images("image/highlight/1.png",1);
-       Images("image/body/1.png",1);
+       Images("image/body/1/1.png",1);
        Images("image/face/1.png",1);
        Images("image/face/tears.png",1);
        Image[4].x += width;
@@ -276,6 +295,16 @@ function Game_load(width,height){
        Buttons(width/4*1,height/10*8,"右腕",17);
        Buttons(width/4*3,height/10*7,"リセット",18);
        Buttons(width/4*3,height/10*8,"コマ送り",19);
+       var S_Input1 = new Entity();
+       S_Input1.moveTo(width,height/10*19);
+       S_Input1.width = width/4;
+       S_Input1.height = height/10;
+       S_Input1._element = document.createElement('input');
+       S_Input1._element.type = "text";
+       S_Input1._element.name = "myText";
+       S_Input1._element.value = "";
+       S_Input1._element.placeholder = "背景画像のURLを入力";
+       scene.addChild(S_Input1);
        Ui_Button[19].moveTo(Ui_Button[19].x+width,Ui_Button[19].y+height);
        return scene;
     };
