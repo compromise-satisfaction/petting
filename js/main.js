@@ -120,7 +120,7 @@ function Game_load(width,height){
             case "頬":
               Image[3].imageurl++;
               if(Image[3].imageurl==3) Image[3].imageurl = 1;
-              Image[3]._element.src = "image/face/"+Image[3].imageurl+".png";
+              Image[3]._element.src = "image/face/"+Image[2].body+"/"+Image[3].imageurl+".png";
               return;
               break;
             case "ハイライトオフ":
@@ -163,6 +163,7 @@ function Game_load(width,height){
               Image[2].body++;
               if(Image[2].body==6) Image[2].body = 1;
               Image[2]._element.src = "image/body/"+Image[2].body+"/"+Image[2].imageurl+".png";
+              Image[3]._element.src = "image/face/"+Image[2].body+"/"+Image[3].imageurl+".png";
               return;
               break;
             case "コマ送り":
@@ -270,7 +271,7 @@ function Game_load(width,height){
        Images("image/eyes/1.png",1);
        Images("image/highlight/1.png",1);
        Images("image/body/1/1.png",1);
-       Images("image/face/1.png",1);
+       Images("image/face/1/1.png",1);
        Images("image/face/tears.png",1);
        Image[4].x += width;
        Image[4].y += height;
