@@ -161,7 +161,7 @@ function Game_load(width,height){
               break;
             case "肌":
               Image[2].body++;
-              if(Image[2].body==6) Image[2].body = 1;
+              if(Image[2].body==8) Image[2].body = 1;
               Image[2]._element.src = "image/body/"+Image[2].body+"/"+Image[2].imageurl+".png";
               Image[3]._element.src = "image/face/"+Image[2].body+"/"+Image[3].imageurl+".png";
               return;
@@ -214,19 +214,19 @@ function Game_load(width,height){
         if(blink != 3){
           if(Image[8].imageurl==4){
             Image[8].imageurl = 1;
-            Image[8]._element.src = "image/eyelashes/1.png";
+            Image[8]._element.src = "image/eyelashes/0.png";
           }
           if(Image[8].imageurl==3){
             Image[8].imageurl = 4;
-            Image[8]._element.src = "image/eyelashes/2.png";
+            Image[8]._element.src = "image/eyelashes/"+Image[2].body+"/1.png";
           }
           if(Image[8].imageurl==2){
             Image[8].imageurl = 3;
-            Image[8]._element.src = "image/eyelashes/3.png";
+            Image[8]._element.src = "image/eyelashes/"+Image[2].body+"/2.png";
           }
           if(time%blink==0){
             Image[8].imageurl = 2;
-            Image[8]._element.src = "image/eyelashes/2.png";
+            Image[8]._element.src = "image/eyelashes/"+Image[2].body+"/1.png";
           }
         }
         time++;
@@ -278,7 +278,7 @@ function Game_load(width,height){
        Images("image/hair/1.png",1);
        Images("image/eyebrows/1.png",1);
        Images("image/mouth/1.png",1);
-       Images("image/eyelashes/1.png",1);
+       Images("image/eyelashes/0.png",1);
        Images("image/bangs/1.png",1);
        Buttons(0,0,"メニューを開く",0);
        Buttons(width/2,height/10*8,"↑",1);
