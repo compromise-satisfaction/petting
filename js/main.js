@@ -162,6 +162,8 @@ function Game_load(width,height){
             case "肌":
               Image[2].body++;
               if(Image[2].body==8) Image[2].body = 1;
+              if(Image[2].body==5) Background2._element.src = "image/hair/00.png";
+              else Background2._element.src = "image/hair/0.png";
               Image[2]._element.src = "image/body/"+Image[2].body+"/"+Image[2].imageurl+".png";
               Image[3]._element.src = "image/face/"+Image[2].body+"/"+Image[3].imageurl+".png";
               return;
