@@ -193,6 +193,7 @@ function Game_load(width,height){
               return;
               break;
             case "リセット":
+              Background2._element.src = "image/hair/0.png";
               Image[0]._element.src = "image/eyes/1.png"
               Image[1]._element.src = "image/highlight/1.png";
               Image[2]._element.src = "image/body/1/1.png";
