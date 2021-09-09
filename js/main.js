@@ -80,6 +80,9 @@ function Game_load(width,height){
                 Ui_Button[o].moveTo(Ui_Button[o].x-width,Ui_Button[o].y-height);
               }
               if(S_Input1._element.value) Background._element.src = S_Input1._element.value;
+              else Background._element.src = "image/hair/10.png";
+              if(S_Input2._element.value) Front._element.src = S_Input2._element.value;
+              else Front._element.src = "image/hair/10.png";
               Ui_Button[0]._text = "メニューを閉じる";
               return;
               break;
@@ -88,6 +91,9 @@ function Game_load(width,height){
                 Ui_Button[o].moveTo(Ui_Button[o].x+width,Ui_Button[o].y+height);
               }
               if(S_Input1._element.value) Background._element.src = S_Input1._element.value;
+              else Background._element.src = "image/hair/10.png";
+              if(S_Input2._element.value) Front._element.src = S_Input2._element.value;
+              else Front._element.src = "image/hair/10.png";
               Ui_Button[0]._text = "メニューを開く";
               return;
               break;
@@ -339,6 +345,14 @@ function Game_load(width,height){
        Images("image/bangs/1.png",1);
        Images("image/right_arm/1/1.png",1);
        Images("image/left_arm/1/1.png",1);
+
+       var Front = new Sprite();
+       Front._element = document.createElement("img");
+       Front._element.src = "image/hair/10.png";
+       Front.width = width;
+       Front.height = height;
+       scene.addChild(Front);
+
        Buttons(0,0,"メニューを開く",0);
        Buttons(width/2,height/10*8,"↑",1);
        Buttons(width/2,height/10*9,"↓",2);
@@ -370,6 +384,18 @@ function Game_load(width,height){
        S_Input1._element.value = "";
        S_Input1._element.placeholder = "背景画像のURLを入力";
        scene.addChild(S_Input1);
+
+       var S_Input2 = new Entity();
+       S_Input2.moveTo(width/4*3,height/10);
+       S_Input2.width = width/4;
+       S_Input2.height = height/10;
+       S_Input2._element = document.createElement('input');
+       S_Input2._element.type = "text";
+       S_Input2._element.name = "myText";
+       S_Input2._element.value = "";
+       S_Input2._element.placeholder = "前画像のURLを入力";
+       scene.addChild(S_Input2);
+
        Ui_Button[19].moveTo(Ui_Button[19].x+width,Ui_Button[19].y+height);
        return scene;
     };
