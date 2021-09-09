@@ -111,7 +111,7 @@ function Game_load(width,height){
               break;
             case "髪":
               Image[5].imageurl++;
-              if(Image[5].imageurl==12) Image[5].imageurl = 1;
+              if(Image[5].imageurl==14) Image[5].imageurl = 1;
               Image[5]._element.src = "image/hair/"+Image[5].imageurl+".png";
               Image[9]._element.src = "image/bangs/"+Image[5].imageurl+".png";
               return;
