@@ -93,7 +93,7 @@ function Game_load(width,height){
               break;
             case "口":
               Image[7].imageurl++;
-              if(Image[7].imageurl==8) Image[7].imageurl = 1;
+              if(Image[7].imageurl==9) Image[7].imageurl = 1;
               Image[7]._element.src = "image/mouth/"+Image[7].imageurl+".png";
               return;
               break;
@@ -121,6 +121,18 @@ function Game_load(width,height){
               Image[3].imageurl++;
               if(Image[3].imageurl==3) Image[3].imageurl = 1;
               Image[3]._element.src = "image/face/"+Image[2].body+"/"+Image[3].imageurl+".png";
+              return;
+              break;
+            case "右腕":
+              Image[10].imageurl++;
+              if(Image[10].imageurl==6) Image[10].imageurl = 1;
+              Image[10]._element.src = "image/right_arm/"+Image[2].body+"/"+Image[10].imageurl+".png";
+              return;
+              break;
+            case "左腕":
+              Image[11].imageurl++;
+              if(Image[11].imageurl==3) Image[11].imageurl = 1;
+              Image[11]._element.src = "image/left_arm/"+Image[2].body+"/"+Image[11].imageurl+".png";
               return;
               break;
             case "ハイライトオフ":
@@ -166,10 +178,53 @@ function Game_load(width,height){
               else Background2._element.src = "image/hair/0.png";
               Image[2]._element.src = "image/body/"+Image[2].body+"/"+Image[2].imageurl+".png";
               Image[3]._element.src = "image/face/"+Image[2].body+"/"+Image[3].imageurl+".png";
+              Image[10]._element.src = "image/right_arm/"+Image[2].body+"/"+Image[10].imageurl+".png";
+              Image[11]._element.src = "image/left_arm/"+Image[2].body+"/"+Image[11].imageurl+".png";
               return;
               break;
             case "コマ送り":
               move = false;
+              return;
+              break;
+            case "リセット":
+              Image[0]._element.src = "image/eyes/1.png"
+              Image[1]._element.src = "image/highlight/1.png";
+              Image[2]._element.src = "image/body/1/1.png";
+              Image[3]._element.src = "image/face/1/1.png";
+              Image[4]._element.src = "image/face/tears.png";
+              Image[5]._element.src = "image/hair/1.png";
+              Image[6]._element.src = "image/eyebrows/1.png";
+              Image[7]._element.src = "image/mouth/1.png";
+              Image[8]._element.src = "image/eyelashes/0.png";
+              Image[9]._element.src = "image/bangs/1.png";
+              Image[10]._element.src = "image/right_arm/1/1.png";
+              Image[11]._element.src = "image/left_arm/1/1.png";
+              Image[0].x = 0;
+              Image[0].y = 0;
+              Image[1].x = 0;
+              Image[1].y = 0;
+              Image[2].body = 1;
+              Image[2].x = 0;
+              Image[2].y = 0;
+              Image[4].x = 0;
+              Image[4].y = 0;
+              Image[4].x += width;
+              Image[4].y += height;
+              Image[0].imageurl = 1;
+              Image[1].imageurl = 1;
+              Image[2].imageurl = 1;
+              Image[3].imageurl = 1;
+              Image[4].imageurl = 1;
+              Image[5].imageurl = 1;
+              Image[6].imageurl = 1;
+              Image[7].imageurl = 1;
+              Image[8].imageurl = 1;
+              Image[9].imageurl = 1;
+              Image[10].imageurl = 1;
+              Image[11].imageurl = 1;
+              Ui_Button[8]._text = "ハイライトオフ";
+              Ui_Button[14]._text = "涙オン";
+              time = 0;
               return;
               break;
             case "まばたき間隔+":
@@ -282,6 +337,8 @@ function Game_load(width,height){
        Images("image/mouth/1.png",1);
        Images("image/eyelashes/0.png",1);
        Images("image/bangs/1.png",1);
+       Images("image/right_arm/1/1.png",1);
+       Images("image/left_arm/1/1.png",1);
        Buttons(0,0,"メニューを開く",0);
        Buttons(width/2,height/10*8,"↑",1);
        Buttons(width/2,height/10*9,"↓",2);
@@ -298,10 +355,11 @@ function Game_load(width,height){
        Buttons(0,height/10*7,"髪",13);
        Buttons(width/4*1,height/10*7,"涙オン",14);
        Buttons(width/4*2,height/10*7,"肌",15);
-       Buttons(0,height/10*8,"左腕",16);
-       Buttons(width/4*1,height/10*8,"右腕",17);
+       Buttons(0,height/10*8,"右腕",16);
+       Buttons(width/4*1,height/10*8,"左腕",17);
        Buttons(width/4*3,height/10*7,"リセット",18);
        Buttons(width/4*3,height/10*8,"コマ送り",19);
+
        var S_Input1 = new Entity();
        S_Input1.moveTo(width/4*3,0);
        S_Input1.width = width/4;
