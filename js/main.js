@@ -137,7 +137,7 @@ function Game_load(width,height){
               break;
             case "左腕":
               Image[11].imageurl++;
-              if(Image[11].imageurl==3) Image[11].imageurl = 1;
+              if(Image[11].imageurl==5) Image[11].imageurl = 1;
               Image[11]._element.src = "image/left_arm/"+Image[2].body+"/"+Image[11].imageurl+".png";
               return;
               break;
