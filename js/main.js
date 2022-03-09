@@ -16,7 +16,7 @@ function Game_load(width,height){
       var blink = 50;
       var blinks = 0;
       var Image = [];
-      var Half_eye = false;
+      var Eye_condition = "開眼";
 
       function Images(a,b){
         Image[i] = new Sprite();
@@ -142,16 +142,22 @@ function Game_load(width,height){
               Image[11]._element.src = "image/left_arm/"+Image[2].body+"/"+Image[11].imageurl+".png";
               return;
               break;
-            case "半眼オン":
+            case "半眼":
               Image[8]._element.src = "image/eyelashes/"+Image[2].body+"/1.png";
-              Half_eye = true;
-              Ui_Button[i]._text = "半眼オフ";
+              Eye_condition = "半眼";
+              Ui_Button[i]._text = "閉眼";
               return;
               break;
-            case "半眼オフ":
+            case "閉眼":
+              Image[8]._element.src = "image/eyelashes/"+Image[2].body+"/2.png";
+              Eye_condition = "閉眼";
+              Ui_Button[i]._text = "開眼";
+              return;
+              break;
+            case "開眼":
               Image[8]._element.src = "image/eyelashes/0.png";
-              Half_eye = false;
-              Ui_Button[i]._text = "半眼オン";
+              Eye_condition = "開眼";
+              Ui_Button[i]._text = "半眼";
               return;
               break;
             case "ハイライトオフ":
@@ -288,10 +294,12 @@ function Game_load(width,height){
           if(time_H) time_H = false;
           else time_H = true;
         }
-        if(blink != 3){
+        if(Eye_condition=="閉眼") Image[8]._element.src = "image/eyelashes/"+Image[2].body+"/2.png";
+        else{
+          if(blink != 3){
           if(Image[8].imageurl==4){
             Image[8].imageurl = 1;
-            if(Half_eye) Image[8]._element.src = "image/eyelashes/"+Image[2].body+"/1.png";
+            if(Eye_condition=="半眼") Image[8]._element.src = "image/eyelashes/"+Image[2].body+"/1.png";
             else Image[8]._element.src = "image/eyelashes/0.png";
           }
           if(Image[8].imageurl==3){
@@ -307,6 +315,7 @@ function Game_load(width,height){
             Image[8]._element.src = "image/eyelashes/"+Image[2].body+"/1.png";
           }
         }
+        };
         time++;
         return;
       };
@@ -388,7 +397,7 @@ function Game_load(width,height){
        Buttons(width/4*1,height/10*8,"左腕",17);
        Buttons(width/4*3,height/10*7,"リセット",18);
        Buttons(width/4*3,height/10*8,"コマ送り",19);
-       Buttons(0,height/10*9,"半眼オン",20);
+       Buttons(0,height/10*9,"半眼",20);
 
        var S_Input1 = new Entity();
        S_Input1.moveTo(width/4*3,0);
