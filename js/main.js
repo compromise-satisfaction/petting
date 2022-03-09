@@ -16,6 +16,7 @@ function Game_load(width,height){
       var blink = 50;
       var blinks = 0;
       var Image = [];
+      var Half_eye = false;
 
       function Images(a,b){
         Image[i] = new Sprite();
@@ -141,6 +142,18 @@ function Game_load(width,height){
               Image[11]._element.src = "image/left_arm/"+Image[2].body+"/"+Image[11].imageurl+".png";
               return;
               break;
+            case "半眼オン":
+              Image[8]._element.src = "image/eyelashes/"+Image[2].body+"/1.png";
+              Half_eye = true;
+              Ui_Button[i]._text = "半眼オフ";
+              return;
+              break;
+            case "半眼オフ":
+              Image[8]._element.src = "image/eyelashes/0.png";
+              Half_eye = false;
+              Ui_Button[i]._text = "半眼オン";
+              return;
+              break;
             case "ハイライトオフ":
               Image[1].x += width;
               Image[1].y += height;
@@ -257,7 +270,7 @@ function Game_load(width,height){
               break;
           }
         });
-      }
+      };
 
       function One_Scene(){
         Image[2].imageurl++;
@@ -278,7 +291,8 @@ function Game_load(width,height){
         if(blink != 3){
           if(Image[8].imageurl==4){
             Image[8].imageurl = 1;
-            Image[8]._element.src = "image/eyelashes/0.png";
+            if(Half_eye) Image[8]._element.src = "image/eyelashes/"+Image[2].body+"/1.png";
+            else Image[8]._element.src = "image/eyelashes/0.png";
           }
           if(Image[8].imageurl==3){
             Image[8].imageurl = 4;
@@ -295,28 +309,28 @@ function Game_load(width,height){
         }
         time++;
         return;
-      }
+      };
 
       scene.addEventListener("enterframe",function(){
         if(move) One_Scene();
         if(!(blink == 3 && blinks== -1)) blink += blinks;
-        if (game.input.down && Image[0].y < 20){
+        if(game.input.down && Image[0].y < 20){
             Image[0].y+=1;
             Image[1].y+=1;
         }
-        if (game.input.up && Image[0].y > -30){
+        if(game.input.up && Image[0].y > -30){
             Image[0].y-=1;
             Image[1].y-=1;
         }
-        if (game.input.left && Image[0].x > -20){
+        if(game.input.left && Image[0].x > -20){
             Image[0].x-=1;
             Image[1].x-=1;
         }
-        if (game.input.right && Image[0].x < 30){
+        if(game.input.right && Image[0].x < 30){
             Image[0].x+=1;
             Image[1].x+=1;
         }
-       })
+      });
 
        var Background = new Sprite();
        Background._element = document.createElement("img");
@@ -374,6 +388,7 @@ function Game_load(width,height){
        Buttons(width/4*1,height/10*8,"左腕",17);
        Buttons(width/4*3,height/10*7,"リセット",18);
        Buttons(width/4*3,height/10*8,"コマ送り",19);
+       Buttons(0,height/10*9,"半眼オン",20);
 
        var S_Input1 = new Entity();
        S_Input1.moveTo(width/4*3,0);
@@ -401,6 +416,6 @@ function Game_load(width,height){
        return scene;
     };
     game.replaceScene(Main_Scene());
-  }
+  };
   game.start();
-}
+};
