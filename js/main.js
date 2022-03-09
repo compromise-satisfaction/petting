@@ -79,20 +79,24 @@ function Game_load(width,height){
             case "メニューを開く":
               for (var o = 1; o < Ui_Button.length; o++) {
                 Ui_Button[o].moveTo(Ui_Button[o].x-width,Ui_Button[o].y-height);
-              }
-              if(S_Input1._element.value) Background._element.src = S_Input1._element.value;
-              else Background._element.src = "image/hair/10.png";
-              if(S_Input2._element.value) Front._element.src = S_Input2._element.value;
-              else Front._element.src = "image/hair/10.png";
+              };
+              S_Input1.x -= width;
+              S_Input1.y -= height;
+              S_Input2.x -= width;
+              S_Input2.y -= height;
               Ui_Button[0]._text = "メニューを閉じる";
               return;
               break;
             case "メニューを閉じる":
               for (var o = 1; o < Ui_Button.length; o++) {
                 Ui_Button[o].moveTo(Ui_Button[o].x+width,Ui_Button[o].y+height);
-              }
+              };
+              S_Input1.x += width;
+              S_Input1.y += height;
+              S_Input2.x += width;
+              S_Input2.y += height;
               if(S_Input1._element.value) Background._element.src = S_Input1._element.value;
-              else Background._element.src = "image/hair/10.png";
+              else if(!Background.Number) Background._element.src = "image/hair/10.png";
               if(S_Input2._element.value) Front._element.src = S_Input2._element.value;
               else Front._element.src = "image/hair/10.png";
               Ui_Button[0]._text = "メニューを開く";
@@ -186,14 +190,14 @@ function Game_load(width,height){
               break;
             case "停":
               move = false;
-              Ui_Button[19].moveTo(Ui_Button[19].x-width,Ui_Button[19].y-height);
               Ui_Button[i]._text = "動";
+              Ui_Button[19]._text = "コマ送り";
               return;
               break;
             case "動":
               move = true;
-              Ui_Button[19].moveTo(Ui_Button[19].x+width,Ui_Button[19].y+height);
               Ui_Button[i]._text = "停";
+              Ui_Button[19]._text = "お任せ背景";
               return;
               break;
             case "肌":
@@ -211,7 +215,17 @@ function Game_load(width,height){
               move = false;
               return;
               break;
+            case "お任せ背景":
+              Background.Number++;
+              if(Background.Number==21){
+                Background.Number = 0;
+                Background._element.src = "image/hair/10.png";
+              }
+              else Background._element.src = "image/background/"+Background.Number+".png";
+              break;
             case "リセット":
+              Background.Number = 0;
+              Background._element.src = "image/hair/10.png";
               Background2._element.src = "image/hair/0.png";
               Image[0]._element.src = "image/eyes/1.png"
               Image[1]._element.src = "image/highlight/1.png";
@@ -346,6 +360,7 @@ function Game_load(width,height){
        Background._element.src = "image/hair/10.png";
        Background.width = width;
        Background.height = height;
+       Background.Number = 0;
        scene.addChild(Background);
 
        var Background2 = new Sprite();
@@ -396,11 +411,11 @@ function Game_load(width,height){
        Buttons(0,height/10*8,"右腕",16);
        Buttons(width/4*1,height/10*8,"左腕",17);
        Buttons(width/4*3,height/10*7,"リセット",18);
-       Buttons(width/4*3,height/10*8,"コマ送り",19);
+       Buttons(width/4*3,height/10*8,"お任せ背景",19);
        Buttons(0,height/10*9,"半眼",20);
 
        var S_Input1 = new Entity();
-       S_Input1.moveTo(width/4*3,0);
+       S_Input1.moveTo(width/4*3+width,height);
        S_Input1.width = width/4;
        S_Input1.height = height/10;
        S_Input1._element = document.createElement('input');
@@ -411,7 +426,7 @@ function Game_load(width,height){
        scene.addChild(S_Input1);
 
        var S_Input2 = new Entity();
-       S_Input2.moveTo(width/4*3,height/10);
+       S_Input2.moveTo(width/4*3+width,height/10+height);
        S_Input2.width = width/4;
        S_Input2.height = height/10;
        S_Input2._element = document.createElement('input');
@@ -421,7 +436,6 @@ function Game_load(width,height){
        S_Input2._element.placeholder = "前画像のURLを入力";
        scene.addChild(S_Input2);
 
-       Ui_Button[19].moveTo(Ui_Button[19].x+width,Ui_Button[19].y+height);
        return scene;
     };
     game.replaceScene(Main_Scene());
