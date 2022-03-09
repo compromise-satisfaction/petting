@@ -131,13 +131,13 @@ function Game_load(width,height){
               break;
             case "右腕":
               Image[10].imageurl++;
-              if(Image[10].imageurl==6) Image[10].imageurl = 1;
+              if(Image[10].imageurl==7) Image[10].imageurl = 1;
               Image[10]._element.src = "image/right_arm/"+Image[2].body+"/"+Image[10].imageurl+".png";
               return;
               break;
             case "左腕":
               Image[11].imageurl++;
-              if(Image[11].imageurl==5) Image[11].imageurl = 1;
+              if(Image[11].imageurl==6) Image[11].imageurl = 1;
               Image[11]._element.src = "image/left_arm/"+Image[2].body+"/"+Image[11].imageurl+".png";
               return;
               break;
