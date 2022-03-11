@@ -304,7 +304,7 @@ function Game_load(width,height){
       function One_Scene(){
         Image[2].imageurl++;
         switch(Image[2].imageurl){
-          case 6:
+          case 3:
             if(Sound.Number){
               if(Sound.paused) Sound.play();
               else Sound.currentTime = 0;
