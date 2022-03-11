@@ -32,6 +32,9 @@ function Game_load(width,height){
       }
 
       var Ui_Button = [];
+      var Sound = document.createElement("audio");
+      Sound.title = "乳揉み";
+      Sound.Number = 0;
 
       function Buttons(x,y,a,i){
         Ui_Button[i] = new Button(a,"light",width/4,height/10);
@@ -100,6 +103,12 @@ function Game_load(width,height){
               if(S_Input2._element.value) Front._element.src = S_Input2._element.value;
               else Front._element.src = "image/hair/10.png";
               Ui_Button[0]._text = "メニューを開く";
+              return;
+              break;
+            case "音":
+              Sound.Number++;
+              if(Sound.Number==4) Sound.Number = 0;
+              if(Sound.Number) Sound.src = "sound/" + Sound.Number + ".wav";
               return;
               break;
             case "口":
@@ -294,7 +303,17 @@ function Game_load(width,height){
 
       function One_Scene(){
         Image[2].imageurl++;
-        if(Image[2].imageurl==13) Image[2].imageurl = 1;
+        switch(Image[2].imageurl){
+          case 6:
+            if(Sound.Number){
+              if(Sound.paused) Sound.play();
+              else Sound.currentTime = 0;
+            };
+            break;
+          case 13:
+            Image[2].imageurl = 1;
+            break;
+        };
         Image[2]._element.src = "image/body/"+Image[2].body+"/"+Image[2].imageurl+".png";
         if(time_H){
           Image[1].x += 1;
@@ -413,6 +432,7 @@ function Game_load(width,height){
        Buttons(width/4*3,height/10*7,"リセット",18);
        Buttons(width/4*3,height/10*8,"お任せ背景",19);
        Buttons(0,height/10*9,"半眼",20);
+       Buttons(width/4*3,height/10*4,"音",21);
 
        var S_Input1 = new Entity();
        S_Input1.moveTo(width/4*3+width,height);
