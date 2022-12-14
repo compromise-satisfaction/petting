@@ -132,7 +132,7 @@ function Game_load(width,height){
               break;
             case "眼":
               Image[0].imageurl++;
-              if(Image[0].imageurl==10) Image[0].imageurl = 1;
+              if(Image[0].imageurl==11) Image[0].imageurl = 1;
               Image[0]._element.src = "image/eyes/"+Image[0].imageurl+".png";
               Image[1]._element.src = "image/highlight/"+Image[0].imageurl+".png";
               return;
